@@ -36,6 +36,7 @@ export class CartDetailsComponent implements OnInit {
       for(let promo of this.promos)
       {
         if(this.p.promocode.value == promo.promocode){
+          this.message = "Promo added successfully";
           this.recalculateprice(promo.discount);
         }
         else{

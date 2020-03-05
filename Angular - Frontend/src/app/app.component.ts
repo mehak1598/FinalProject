@@ -25,7 +25,7 @@ public modalRef: BsModalRef;
 
   constructor(private idle: Idle, private keepalive: Keepalive, public router: Router, private modalService: BsModalService, private appService: AppService) {
     // sets an idle timeout of 5 seconds, for testing purposes.
-    idle.setIdle(100);
+    idle.setIdle(5);
     // sets a timeout period of 5 seconds. after 10 seconds of inactivity, the user will be considered timed out.
     idle.setTimeout(5);
     // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
@@ -56,7 +56,7 @@ public modalRef: BsModalRef;
     });
 
     // sets the ping interval to 15 seconds
-    keepalive.interval(15);
+    keepalive.interval(5);
 
     keepalive.onPing.subscribe(() => this.lastPing = new Date());
     
