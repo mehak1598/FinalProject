@@ -1,0 +1,82 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col bg-dark text-white">
+            <a class="navbar-brand">
+                Book E-Commerce Website
+            </a>
+        </div>
+        <div class="btn-group" role="group" >
+            <button type="button" class="btn btn-dark" routerLink="/bookstore">Home</button>
+            <button type="button" class="btn btn-dark" routerLink="/login">Logout</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mt-2">
+            
+            <h2 class="text-center">
+                Your Cart <span class="fa fa-shopping-cart"></span>
+            </h2>
+            <table class="table table-bordered table-striped p-2">
+                <thead>
+                    <tr>
+                        <th>Quantity</th>
+                        <th>Book</th>
+                        <th class="text-right">Price</th>
+                        <th class="text-right">Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="cart.lines.length==0">
+                        <td colspan="4" class="text-center">Your cart is empty</td>
+                    </tr>
+                    <tr *ngFor="let line of cart.lines">
+                        <td>
+                            <input type="number" class="form-control-sm" style="width: 4em"
+                            [value]="line.quantity"
+                            (change)="cart.updateQuantity(line.product, $event.target.value)"
+                            min="1">
+                        </td>
+                        <td>{{line.product.title }}</td>
+                        <td class="text-right">{{line.product.price | currency:"INR"}}</td>
+                        <td class="text-center">
+                            {{line.lineTotal | currency:"INR"}}
+                        </td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-danger"
+                                    (click)="cart.removeLine(line.product.id)">
+                                    Remove <span class="fa fa-trash-o fa-lg"></span>
+                            </button>
+                        </td>
+ 
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" class="text-right"> Total: </td>
+                        <td class="text-right"> {{cart.cartPrice | currency:"INR"}}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <p *ngIf="message" class="text-center error">{{message}}</p>
+    <form [formGroup]="promoForm" id="promoForm" novalidate (ngSubmit)="checkpromo(form)" class="m-2">
+     
+        <div class="form-group">
+            <label class="float-left">Promo Code</label>
+            <input class="form-control" formControlName="promocode" />
+        </div> 
+        <div class="col-xs-12 form-group text-right">
+          <button class="btn btn-secondary" type="submit">Check</button>
+        </div>
+
+    </form>
+    <div class="text-center">
+        <button class="btn btn-info m-1" routerLink="/bookstore">
+        Continue Shopping
+        </button>
+        <button class="btn btn-secondary m-1" routerLink="/checkout"
+        [disabled]="cart.lines.length == 0">Checkout</button>
+    </div>
+        
+</div>

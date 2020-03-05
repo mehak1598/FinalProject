@@ -1,0 +1,83 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col bg-dark text-white">
+            <a class="navbar-brand">
+                Book E-Commerce Website
+            </a>
+        </div>
+        <div class="btn-group" role="group" >
+            <button type="button" class="btn btn-dark" (click)="changeAuthor()">Home</button>
+            <button type="button" class="btn btn-dark" routerLink="/admin">Back</button>
+            <button type="button" class="btn btn-dark" routerLink="/login">Logout</button>
+        </div>
+    </div>
+
+    <form #form="ngForm" novalidate (ngSubmit)="submitBook(form)" class="m-2">
+        <div class="form-group">
+            <label class="float-left">ID</label>
+            <input type="number" class="form-control" id="id" name="id" [(ngModel)]="book.id" #name="ngModel" required />
+            <span *ngIf="submitted && id.invalid" class="text-danger">
+                ID is required
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="float-left">Title</label>
+            <input type="text" class="form-control" id="title" name="title" [(ngModel)]="book.title" #name="ngModel" required />
+            <span *ngIf="submitted && title.invalid" class="text-danger">
+                Title is required
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="float-left">Author</label>
+            <input type="text" class="form-control" id="author" name="author" [(ngModel)]="book.author" #name="ngModel" required />
+            <span *ngIf="submitted && author.invalid" class="text-danger">
+                Author is required
+            </span>
+        </div>
+        <div class="form-group">
+            <label class="float-left">Price</label>
+            <input type="number" class="form-control" id="price" name="price" [(ngModel)]="book.price" #name="ngModel" required />
+            <span *ngIf="submitted && price.invalid" class="text-danger">
+                Price is required
+            </span>
+        </div>
+        <div class="form-group">   
+            <label class="float-left">Number of books In Stock</label>
+            <input type="number" class="form-control" id="noInStock" name="noInStock" [(ngModel)]="book.noInStock" #name="ngModel" required />
+            <span *ngIf="submitted && noInStock.invalid" class="text-danger">
+                Number of books In Stock is required
+            </span>
+        </div>
+        <div class="form-group">    
+            <label class="float-left">Number of books to order</label>
+            <input type="number" class="form-control" id="stopOrder" name="stopOrder" [(ngModel)]="book.stopOrder" #name="ngModel" required />
+            <span *ngIf="submitted && stopOrder.invalid" class="text-danger">
+                Number of books to order is required
+            </span>
+        </div>
+        <div class="form-group">    
+            <label>Re-ordering threshold</label>
+            <input type="number" class="form-control" id="reorderingThreshold" name="reorderingThreshold" [(ngModel)]="book.reorderingThreshold" #name="ngModel" required />
+            <span *ngIf="submitted && reorderingThreshold.invalid" class="text-danger">
+                Re-ordering threshold is required
+            </span>
+        </div>
+        <!-- <div class="text-center">
+            <button class="btn btn-secondary m-1" routerLink="/admin">
+            Back</button>
+        </div>
+        <div class="text-center">
+        <button class="btn btn-info m-1" type="submit" routerLink="/admin">
+            Submit book
+        </button>
+        </div> -->
+        <div class="text-center">
+            <button class="btn btn-info m-1 btn-lg" type="submit">
+                Add
+            </button>
+        </div>
+
+
+    </form>
+    
+</div>
